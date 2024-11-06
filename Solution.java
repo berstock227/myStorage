@@ -17,7 +17,8 @@ public class Solution // viết các hàm trong này
         }
         return true;
     }
-    public void merge(int[] nums1, int m, int[] nums2, int n) {
+    public void merge(int[] nums1, int m, int[] nums2, int n) // nối 2 mảng lại với nhau
+    {
         int p1 = m - 1;
         int p2 = n - 1;
         int p = m + n - 1;
