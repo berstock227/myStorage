@@ -18,5 +18,12 @@ public class main {
 
         solution.merge(nums1, m, nums2, n);   
         System.out.println("Array after merging: " + Arrays.toString(merges));
+
+        TreeNode root1 = new TreeNode(1);
+        root1.left = new TreeNode(2);
+        root1.right = new TreeNode(3);
+        root1.left.left = new TreeNode(4);
+        root1.left.right = new TreeNode(5);
+        System.out.println("Tree node root: " + solution.inorderTraversal(root1));
     }
 }

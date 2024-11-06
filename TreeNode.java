@@ -1,7 +1,25 @@
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
 
-public class Solution // viết các hàm trong này
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode() {} // constructor
+
+    TreeNode(int val) {this.val = val;}
+
+    TreeNode (int val, TreeNode left, TreeNode right) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
+
+class Solution // viết các hàm trong này
 {
     public static boolean canSortArray(int[] nums) // trả về mảng sắp xếp - function check sort: true/false
     {
@@ -40,5 +58,24 @@ public class Solution // viết các hàm trong này
                 p--;   
             }
         }
+    }
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode current = root;
+        while (current != null || !stack.empty()) {
+            // 1. Đi xuống hết cỡ bên trái, đẩy các nút vào stack
+            while (current != null) {
+                stack.push(current);
+                current = current.left;
+            }
+            // 2. Lấy nút từ stack, thêm giá trị vào kết quả
+            current = stack.pop();
+            result.add(current.val);
+
+            // 3. di chuyển cây con sang trái
+            current = current.right;
+        }
+        return result;
     }
 }
