@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Stack;
 
 
-class TreeNode {
+class TreeNode { // nút cây
     int val;
     TreeNode left;
     TreeNode right;
