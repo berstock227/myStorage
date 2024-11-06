@@ -53,8 +53,10 @@ public class Solution // viết các hàm trong này
         int m = 3;
         int[] nums2 = {2, 4, 6};
         int n = 3;
+        int[] merges = {};
+        merges = nums1;
 
         solution.merge(nums1, m, nums2, n);   
-        System.out.println("Array after merging: " + Arrays.toString(nums1));
+        System.out.println("Array after merging: " + Arrays.toString(merges));
     }
 }
