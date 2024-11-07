@@ -78,4 +78,41 @@ class Solution // viết các hàm trong này
         }
         return result;
     }
+    public boolean isSameTree(TreeNode p, TreeNode q)
+    {
+        //Use Stack to simulate recursion
+        Stack<TreeNode> StackP = new Stack<>();
+        Stack<TreeNode> StackQ = new Stack<>();
+        // push node root if exsist
+        if (p != null) StackP.push(p);
+        if (q != null) StackQ.push(q);
+
+        // looping to 2 stack empty
+        while (!StackP.empty() && !StackQ.empty()) {
+            // take node current from stack each
+            TreeNode nodeP = StackP.pop();
+            TreeNode nodeQ = StackQ.pop();
+
+            // return false if value different
+            if (nodeP.val != nodeQ.val) return false;
+            
+
+            // process node right. Push to stack if exist
+            if (nodeP.right != null) StackP.push(nodeP.right);
+            if (nodeQ.right != null) StackQ.push(nodeQ.right);
+
+            // check size stack after pushing node right. if different => structure different => return false
+            if (StackQ.size() != StackP.size()) return false;
+
+            // process node left. Push to stack if exist
+            if (nodeP.left != null) StackP.push(nodeP.left);
+            if (nodeQ.left != null) StackQ.push(nodeQ.left);
+
+            // check size stack after pushing node right. if different => structure different => return false
+            if (StackQ.size() != StackP.size()) return false;
+        }
+        // if stack same => 2 tree this same
+        return StackP.empty() && StackQ.empty();
+    }
+    
 }
