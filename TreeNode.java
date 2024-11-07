@@ -1,8 +1,9 @@
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Stack;
-
 
 class TreeNode { // nút cây
     int val;
@@ -114,5 +115,43 @@ class Solution // viết các hàm trong này
         // if stack same => 2 tree this same
         return StackP.empty() && StackQ.empty();
     }
-    
+    public boolean isSymmetric(TreeNode root) {
+        if (root == null) return true; // 1. if tree null => symmetric
+
+        // 2. create queue
+        Queue<TreeNode> queue = new LinkedList<>(); 
+
+        // add node right and node left to Queue.
+        // Start the symmetry comparison process from the 2nd tier of the tree.
+        queue.offer(root.left);
+        queue.offer(root.right);
+
+        // 3. Browse by width (BFS) using queues
+        while (!queue.isEmpty()) {
+            // 4. Take 2 node from queue
+            TreeNode leftNode = queue.poll(); // take and delete first element
+            TreeNode rightNode = queue.poll(); // take and delete second element 
+
+            // 5. check null
+            if (leftNode == null && rightNode == null) continue; // continue do loop
+
+            if (leftNode == null || rightNode == null) return false; // if just one return false => not symmetric
+
+            // 6. compare value of 2 node
+            if (leftNode.val !=rightNode.val) return false; // if not same value => not symmetric
+
+            // 7. Add child nodes to the queue (order)
+            queue.offer(leftNode.left); // child node left of leftNode
+            queue.offer(rightNode.right); // child node right of rightNode
+
+            queue.offer(leftNode.right); // child node right of leftNode
+            queue.offer(rightNode.left); // child node left of rightNode
+
+            /*
+             Adding order very important to ensure symmetric. Next loop, leftnode.left will compare with rightnode.right 
+             and the like.
+             */
+        }
+        return true;
+    }
 }
