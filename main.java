@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.List;
 
 public class main {
     public static void main(String[] args)
@@ -65,7 +66,10 @@ public class main {
 
         // test single numer
         int[] arr = {1, 3, 1, 5 ,5};
-
         System.out.println("Element single in array: " + solution.singleNumber(arr));
+
+        // test generate
+        List<List<Integer>> triangle = solution.generate(4);
+        System.out.println("Pacal's Triangle: " + triangle);
     }
 }

@@ -165,4 +165,37 @@ class Solution // viết các hàm trong này
         }
         return array[array.length - 1]; // return last array element
     }
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> triangle = new ArrayList();
+
+        // row first all 1
+        if (numRows >= 1)
+        {
+            triangle.add(List.of(1));
+        }
+
+        // create continue row
+        for (int i = 1; i < numRows; i++)
+        {
+            List<Integer> row = new ArrayList<>();
+            List<Integer> preRow = triangle.get(i - 1); // before rowing
+
+
+            // element of row always 1
+            row.add(1);
+
+            // calculator element mid
+            for (int j = 1; j < i;j++)
+            {
+                int result = preRow.get(j-1) + preRow.get(j);
+                row.add(result);
+            }
+
+            // element tail always 1
+            row.add(1);
+
+            triangle.add(row);
+        }
+        return triangle;
+    }
 }
