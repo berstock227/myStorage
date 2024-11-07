@@ -62,5 +62,10 @@ public class main {
         System.out.println("This tree symmetric is: " + solution.isSymmetric(root1));
         root1 = new TreeNode(1); // just having root only
         System.out.println("This tree symmetric is: " + solution.isSymmetric(root1));
+
+        // test single numer
+        int[] arr = {1, 3, 1, 5 ,5};
+
+        System.out.println("Element single in array: " + solution.singleNumber(arr));
     }
 }

@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -153,5 +154,15 @@ class Solution // viết các hàm trong này
              */
         }
         return true;
+    }
+    public int singleNumber(int[] nums) {
+        int[] array = nums.clone();
+        Arrays.sort(array);
+
+        for (int i = 0; i < array.length - 1; i+=2) // step 2 to compare
+        {
+            if (array[i] != array[i+1]) return array[i]; // compare value couple and return value first not same
+        }
+        return array[array.length - 1]; // return last array element
     }
 }
