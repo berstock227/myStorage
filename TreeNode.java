@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -197,5 +198,37 @@ class Solution // viết các hàm trong này
             triangle.add(row);
         }
         return triangle;
+    }
+    public int Greedy_Test(int[] nums1, int[] nums2, int m) {
+        int n = nums1.length;
+        Integer[] indices = new Integer[n];
+
+        // 1. Tạo mảng chỉ số
+        for (int i = 0; i < n; i++) {
+            indices[i] = i;
+        }
+
+        // 2. Sắp xếp sử dụng Comparator riêng
+        Arrays.sort(indices, new Comparator<Integer>() {
+            //@Override
+            public int compare(Integer i1, Integer i2) {
+                double ratio1 = (nums1[i1] == 0) ? Double.MAX_VALUE : (double) nums2[i1] / nums1[i1];
+                double ratio2 = (nums1[i2] == 0) ? Double.MAX_VALUE : (double) nums2[i2] / nums1[i2];
+                return Double.compare(ratio2, ratio1); // Sắp xếp giảm dần
+            }
+        });
+
+        // 3. Tham lam (giữ nguyên)
+        int totalValue = 0;
+        int remainingCapacity = m;
+
+        for (int i : indices) {
+            while (remainingCapacity >= nums1[i] && nums1[i] > 0) {
+                totalValue += nums2[i];
+                remainingCapacity -= nums1[i];
+            }
+        }
+
+        return totalValue;
     }
 }

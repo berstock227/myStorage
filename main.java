@@ -71,5 +71,6 @@ public class main {
         // test generate
         List<List<Integer>> triangle = solution.generate(4);
         System.out.println("Pacal's Triangle: " + triangle);
+            
     }
 }
